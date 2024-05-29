@@ -5,11 +5,14 @@ extends CharacterBody3D
 @export var gravity = -5
 ## Attach your camera3d that will follow the player
 @export var camera_3d: Camera3D 
+@export var camera_x_offset  = 0.0 as float
+@export var camera_z_offset  = 0.0 as float
 ## Add a mesh that will mark the clicked place, add animations to make it looks better
 @export var marker_object : MeshInstance3D
 ## This is the scenario representing your scenario. This should have a collisionshape3d to map the scenario 
 @export var scenario_mesh : StaticBody3D
 
+@export var tolerance = 0.1 as float
 
 func _ready() -> void:
 	#register
@@ -25,7 +28,7 @@ func _physics_process(delta):
 		look_at(target, Vector3.UP)
 		rotation.x = 0
 		velocity = -transform.basis.z * speed
-		if transform.origin.distance_to(target) < .05:
+		if transform.origin.distance_to(target) < tolerance:
 			target = Vector3.ZERO
 			velocity = Vector3.ZERO
 	move_and_slide()
@@ -34,8 +37,8 @@ func _physics_process(delta):
 
 
 func camera_moviment(camera):
-	camera.position.x = position.x
-	camera.position.z = position.z
+	camera.position.x = position.x - (camera_x_offset )
+	camera.position.z = position.z - (camera_z_offset )
 	
 	
 
