@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var camera_3d: Camera3D 
 ## Add a mesh that will mark the clicked place, add animations to make it looks better
 @export var marker_object : MeshInstance3D
-## This is the scenario representing your scenario
+## This is the scenario representing your scenario. This should have a collisionshape3d to map the scenario 
 @export var scenario_mesh : StaticBody3D
 
 
